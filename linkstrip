@@ -7,16 +7,15 @@ if (count($argv) < 2) {
 
 $url = $argv[1];
 
-if (!filter_var($url, FILTER_VALIDATE_URL)) {
-    die("invalid url.".PHP_EOL);
-}
-
 $curl = curl_init("https://linkst.rip/api/newLink?url=$url");
 
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($curl);
 curl_close($curl);
-echo json_decode($response)->url;
+
+$json = json_decode($response);
+
+echo $json->success ? $json->url : $json->error;
 
 die(PHP_EOL);
