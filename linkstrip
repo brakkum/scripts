@@ -1,5 +1,7 @@
 #!/usr/bin/php
 <?php
+# returns a short url for argument
+# using linkst.rip API
 
 if (count($argv) < 2) {
     die("url needs to be provided as argument.".PHP_EOL);
